@@ -3,9 +3,11 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Panier;
+use App\Models\Command;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
@@ -22,6 +24,17 @@ class User extends Authenticatable
         'email',
         'password',
     ];
+
+    public function commands()
+    {
+        return $this->hasMany(Command::class);
+    }
+
+    public function panier()
+    {
+        return $this->belongsTo(Panier::class);
+    }
+    
 
     /**
      * The attributes that should be hidden for serialization.
